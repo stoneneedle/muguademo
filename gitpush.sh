@@ -1,0 +1,1 @@
+git add . && git commit -m "Added gitpush.sh to root, and added gitpush to .gitignore." && git push -u origin main 
