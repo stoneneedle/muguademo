@@ -17,6 +17,7 @@ class Assignment(models.Model):
 class Discussion(models.Model):
     title = models.CharField(max_length=120)
     message = models.TextField()
+    post_date = models.DateTimeField()
 
     def __str__(self):
         return self.title

@@ -2,7 +2,26 @@
 {% block title %}Discussion Forum{% endblock %}
 
 {% block content %}
-{% for post in discussion %}
-    {{post.title}}<br />
-{% endfor %}
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Discussion Title</th>
+        <th scope="col">Creator</th>
+        <th scope="col">Date Posted</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for post in discussion %}
+        <tr>
+            <th scope="row">{{post.id}}</th>
+            <td>{{post.title}}</td>
+            <td>POSTER</td>
+            <td>{{post.post_date}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}
