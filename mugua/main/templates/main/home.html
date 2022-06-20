@@ -1,8 +1,10 @@
 {% extends 'main/base.html' %}
-{% block title %}
-Home
-{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Home Page</h1>
+    {% if user.is_authenticated %}
+        <h1>Home Page</h1>
+    {% else %}
+        <p>Login <a href="/login">here</a>.</p>
+    {% endif %}
 {% endblock %}
