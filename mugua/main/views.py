@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import ToDoList, Item
+from .models import ToDoList, Item, Discussion
 from .forms import CreateNewList
 
 # Create your views here.
@@ -48,6 +48,10 @@ def create(response):
         form = CreateNewList()
 
     return render(response, "main/create.html", {"form": form})
+
+def discuss(response):
+    discussion = Discussion.objects.all()
+    return render(response, "main/discuss.html", {"discussion": discussion})
 
 def view(response):
     return render(response, "main/view.html", {})

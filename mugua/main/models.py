@@ -1,7 +1,27 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-# Create your models here.
+# Custom User Models
+
+# Assignments
+class Assignment(models.Model):
+    title = models.CharField(max_length=120)
+    
+    max_grade_pts = models.IntegerField(default=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+# Discussions
+class Discussion(models.Model):
+    title = models.CharField(max_length=120)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+# TDL / Tutorial Models
 class ToDoList(models.Model):
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE, related_name="todolist", null=True)
     name = models.CharField(max_length=200)

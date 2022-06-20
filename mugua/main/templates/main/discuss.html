@@ -1,0 +1,8 @@
+{% extends "main/base.html" %}
+{% block title %}Discussion Forum{% endblock %}
+
+{% block content %}
+{% for post in discussion %}
+    {{post.title}}
+{% endfor %}
+{% endblock %}
