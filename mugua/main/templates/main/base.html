@@ -13,11 +13,18 @@
     <title>{% block title %}Jim's Site{% endblock %}</title>
 </head>
 <body>
-    <div class="sidenav">
-        <a href="/">Home</a>
-        <a href="/discuss">Discussion</a>
-        <a href="/create">Create</a>
-        <a href="/view">View</a>
+    <div class="d-flex flex-column sidenav">
+        <div class="p-1">
+            <a href="/">Home</a>
+            <a href="/discuss">Discussion</a>
+            <a href="/create">Create</a>
+            <a href="/view">View</a>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="mt-auto p-1 ml-3 userinfo">
+            <p>Hello {{user}}.</p>
+        </div>
+        {% endif %}
     </div>
 
     <div class="main" id="content" name="content">

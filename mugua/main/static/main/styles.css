@@ -1,3 +1,5 @@
+/* Sidebar Styles */
+
 .sidenav {
     height: 100%;
     width: 160px;
@@ -11,7 +13,6 @@
 }
 
 .sidenav a {
-    padding: 6px 8px 6px 16px;
     text-decoration: none;
     color: #818181;
     font-size: 25px;
@@ -22,7 +23,26 @@
     color: #f1f1f1;
 }
 
+.userinfo {
+    color: #fff;
+}
+
+.userinfo a {
+    padding: 0 0 0 0;
+    display: inline;
+    font-size: 1rem;
+    color: #999;
+}
+
+/* Main Styles */
+
 .main {
     margin-left: 160px;
     padding: 20px;
+}
+
+/* Discussion Styles */
+
+.discussionMain {
+    line-height: 10px;
 }

@@ -1,1 +1,1 @@
-git add . && git commit -m "Factored out stylesheet in base.html to static stylesheet. Added static/main directories." && git push -u origin main 
+git add . && git commit -m "Added hello message to logged in users. Altered styles slightly." && git push -u origin main 
