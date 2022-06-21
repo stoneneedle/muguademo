@@ -17,7 +17,7 @@
         <tr>
             <th scope="row">{{post.id}}</th>
             <td>{{post.title}}</td>
-            <td>POSTER</td>
+            <td>{{post.author}}</td>
             <td>{{post.post_date}}</td>
         </tr>
     {% endfor %}
@@ -34,15 +34,15 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">Title</div>
                 </div>
-                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Today's Lesson">
+                <input type="text" name="title" class="form-control" id="inlineFormInputGroupUsername" placeholder="Today's Lesson" required>
             </div>
         </div>
         <div class="row mb-3">
             <label for="validationTextarea">Message</label>
-            <textarea class="form-control" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+            <textarea class="form-control" name="message" id="validationTextarea" placeholder="Required example textarea" required></textarea>
         </div>
         <div class="row mb-1">
-            <button type="submit" name="newItem" value="newItem" class="btn btn-success">Post</button>
+            <button type="submit" name="postDiscussion" value="postDiscussion" class="btn btn-success">Post</button>
         </div>
     </div>
 </form>

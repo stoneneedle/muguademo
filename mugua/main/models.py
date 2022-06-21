@@ -15,6 +15,7 @@ class Assignment(models.Model):
 
 # Discussions
 class Discussion(models.Model):
+    author = models.CharField(max_length=120, null=True)
     title = models.CharField(max_length=120)
     message = models.TextField()
     post_date = models.DateTimeField(null=True)
