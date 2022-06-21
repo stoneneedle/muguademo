@@ -1,1 +1,1 @@
-git add . && git commit -m "Added discussion post form elements." && git push -u origin main 
+git add . && git commit -m "Added backend form functionality enabling simple posts to be made." && git push -u origin main 
