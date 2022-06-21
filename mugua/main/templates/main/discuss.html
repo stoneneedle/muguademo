@@ -24,4 +24,27 @@
     </tbody>
 </table>
 
+<hr />
+
+<form method="post" action="#">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row mb-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Title</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Today's Lesson">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="validationTextarea">Message</label>
+            <textarea class="form-control" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+        </div>
+        <div class="row mb-1">
+            <button type="submit" name="newItem" value="newItem" class="btn btn-success">Post</button>
+        </div>
+    </div>
+</form>
+
 {% endblock %}

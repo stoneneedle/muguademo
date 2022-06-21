@@ -1,1 +1,1 @@
-git add . && git commit -m "Implemented post date in discussion model." && git push -u origin main 
+git add . && git commit -m "Added discussion post form elements." && git push -u origin main 
