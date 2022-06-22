@@ -21,8 +21,8 @@
             <a href="/view">View</a>
         </div>
         {% if user.is_authenticated %}
-        <div class="mt-auto p-1 ml-3 userinfo">
-            <p>Hello {{user}}.</p>
+        <div class="mt-auto p-1 userinfo">
+            <p>Hello {{user.get_username}}.</p>
         </div>
         {% endif %}
     </div>
