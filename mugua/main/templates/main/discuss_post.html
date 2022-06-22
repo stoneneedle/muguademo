@@ -7,4 +7,41 @@
 <p>{{discussion_post.author}}</p>
 <p>{{discussion_post.message}}</p>
 <p>{{discussion_post.post_date}}</p>
+<p></p>
+
+{% for reply in discussion_post_reply %}
+    {% if discussion_post.id == reply.discussion.id %}
+
+<hr />
+<p><b>{{reply.title}}</b></p>
+<p><i>{{reply.post_date}}</i></p>
+<p>{{reply.message}}</p>
+
+    {% endif %}
+{% endfor %}
+
+<hr />
+
+<form method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row mb-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Title</div>
+                </div>
+                <div class="p-2">RE: {{discussion_post.title}}</div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="validationTextarea">Message</label>
+            <textarea class="form-control" name="message" id="validationTextarea" placeholder="I thought it was interesting that..." required></textarea>
+        </div>
+        <div class="row mb-1">
+            <button type="submit" name="postDiscussion" value="postDiscussion" class="btn btn-success">Post</button>
+        </div>
+    </div>
+</form>
+
+
 {% endblock %}

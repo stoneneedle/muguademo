@@ -1,1 +1,1 @@
-git add . && git commit -m "Added discussion post template, url, and view. Tweaked forms to accommodate large amounts of text with Textarea widget." && git push -u origin main 
+git add . && git commit -m "Finished revising discussion reply model, fully implemented simple discussion replies so that replies are filtered by discussion post ID." && git push -u origin main 

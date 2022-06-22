@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import ToDoList, Discussion
-from .forms import CreateNewList, CreateDiscussionPost
+from .models import ToDoList, Discussion, DiscussionReply
+from .forms import CreateDiscussionPostReply, CreateNewList, CreateDiscussionPost
 from django.utils import timezone
 
 # Create your views here.
@@ -76,7 +76,24 @@ def discuss(response):
     return render(response, "main/discuss.html", {"discussion": discussion})
 
 def discussPost(response, id):
+    if response.method == "POST":
+        form = CreateDiscussionPostReply(response.POST)
+
+        if form.is_valid():
+            discussion_post = Discussion.objects.get(id=id)
+            author = response.user.username
+            title = "RE: " + discussion_post.title
+            message = form.cleaned_data["message"]
+            post_date = timezone.now()
+
+            dr = DiscussionReply(discussion=discussion_post, author=author, title=title, message=message, post_date=post_date)
+            dr.save()
+    else:
+        form = CreateDiscussionPostReply()
+
+
     discussion_post = Discussion.objects.get(id=id)
-    return render(response, "main/discuss_post.html", {"discussion_post": discussion_post})
+    discussion_post_reply = DiscussionReply.objects.all() # get(discussion=id)
+    return render(response, "main/discuss_post.html", {"discussion_post": discussion_post, "discussion_post_reply": discussion_post_reply})
 
 
