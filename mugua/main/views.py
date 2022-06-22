@@ -50,6 +50,9 @@ def create(response):
 
     return render(response, "main/create.html", {"form": form})
 
+def view(response):
+    return render(response, "main/view.html", {})
+
 def discuss(response):
     if response.method == "POST":
         form = CreateDiscussionPost(response.POST)
@@ -72,5 +75,8 @@ def discuss(response):
     discussion = Discussion.objects.all()
     return render(response, "main/discuss.html", {"discussion": discussion})
 
-def view(response):
-    return render(response, "main/view.html", {})
+def discussPost(response, id):
+    discussion_post = Discussion.objects.get(id=id)
+    return render(response, "main/discuss_post.html", {"discussion_post": discussion_post})
+
+

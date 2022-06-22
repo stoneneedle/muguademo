@@ -6,4 +6,4 @@ class CreateNewList(forms.Form):
 
 class CreateDiscussionPost(forms.Form):
     title = forms.CharField(label="Title", max_length=120)
-    message = forms.CharField(label="Message", max_length=500)
+    message = forms.CharField(widget=forms.Textarea)

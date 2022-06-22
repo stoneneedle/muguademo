@@ -1,0 +1,10 @@
+{% extends "main/base.html" %}
+{% block title %}Discussion Forum - POST{% endblock %}
+
+{% block content %}
+<h1>DISCUSSION POST</h1>
+<p>{{discussion_post.title}}
+<p>{{discussion_post.author}}</p>
+<p>{{discussion_post.message}}</p>
+<p>{{discussion_post.post_date}}</p>
+{% endblock %}

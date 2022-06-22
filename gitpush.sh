@@ -1,1 +1,1 @@
-git add . && git commit -m "Tweaked styles. Added VSCode workspace to .gitignore." && git push -u origin main 
+git add . && git commit -m "Added discussion post template, url, and view. Tweaked forms to accommodate large amounts of text with Textarea widget." && git push -u origin main 
