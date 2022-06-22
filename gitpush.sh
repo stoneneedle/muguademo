@@ -1,1 +1,1 @@
-git add . && git commit -m "Finished revising discussion reply model, fully implemented simple discussion replies so that replies are filtered by discussion post ID." && git push -u origin main 
+git add . && git commit -m "Added Course model, and altered Assignment model to link up to courses." && git push -u origin main 
