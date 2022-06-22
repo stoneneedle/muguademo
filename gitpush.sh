@@ -1,1 +1,1 @@
-git add . && git commit -m "Added hello message to logged in users. Altered styles slightly." && git push -u origin main 
+git add . && git commit -m "Tweaked styles. Added VSCode workspace to .gitignore." && git push -u origin main 
