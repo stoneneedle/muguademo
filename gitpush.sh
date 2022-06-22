@@ -1,1 +1,1 @@
-git add . && git commit -m "Added course foreign key to discussions model." && git push -u origin main 
+git add . && git commit -m "Added models, urls, views for assignments, courses, and modules." && git push -u origin main 

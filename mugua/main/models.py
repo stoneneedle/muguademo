@@ -22,6 +22,12 @@ class Assignment(models.Model):
     def __str__(self):
         return self.title
 
+class Module(models.Model):
+    title = models.CharField(max_length=200, null=True)
+    assignments = models.ForeignKey(Assignment, on_delete=models.CASCADE, related_name="modulesassignments", null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="coursesassignment", null=True)
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name="teachersmodule", null=True)
+
 # Discussions
 class Discussion(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="discusscourse", null=True)

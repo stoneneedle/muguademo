@@ -6,6 +6,9 @@ from django.utils import timezone
 
 # Create your views here.
 
+def assignments(response):
+    return render(response, "main/assignments.html", {})
+
 def index(response, id):
     ls = ToDoList.objects.get(id=id)
 
@@ -33,6 +36,9 @@ def index(response, id):
 
 def home(response):
     return render(response, "main/home.html", {})
+
+def courses(response):
+    return render(response, "main/courses.html", {})
 
 def create(response):
     if response.method == "POST":
@@ -96,4 +102,6 @@ def discussPost(response, id):
     discussion_post_reply = DiscussionReply.objects.all() # get(discussion=id)
     return render(response, "main/discuss_post.html", {"discussion_post": discussion_post, "discussion_post_reply": discussion_post_reply})
 
+def modules(response):
+    return render(response, "main/modules.html", {})
 
