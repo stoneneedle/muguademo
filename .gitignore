@@ -4,7 +4,7 @@
 /muguademo.code-workspace
 
 # Gitpush Script
-/gitpush.sh
+gitpush.sh
 
 # Virtual Environment
 /venv
