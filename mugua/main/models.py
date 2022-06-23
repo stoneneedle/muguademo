@@ -11,20 +11,19 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+class Module(models.Model):
+    title = models.CharField(max_length=200, null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="coursesassignment", null=True)
+
 class Assignment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="asmtcourse", null=True)
+    module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name="asmtmodule", null=True)
     title = models.CharField(max_length=120)
     max_grade_pts = models.IntegerField(default=100)
     description = models.TextField()
     
     def __str__(self):
         return self.title
-
-class Module(models.Model):
-    title = models.CharField(max_length=200, null=True)
-    assignments = models.ForeignKey(Assignment, on_delete=models.CASCADE, related_name="modulesassignments", null=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="coursesassignment", null=True)
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name="teachersmodule", null=True)
 
 # Discussions
 class Discussion(models.Model):
