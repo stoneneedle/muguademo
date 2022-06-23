@@ -14,6 +14,7 @@ class Course(models.Model):
 class Module(models.Model):
     title = models.CharField(max_length=200, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="coursesassignment", null=True)
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name="teachersmodule", null=True)
 
 class Assignment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="asmtcourse", null=True)

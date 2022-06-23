@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Course, ToDoList, Discussion, DiscussionReply
-from .forms import  CreateCourse, CreateDiscussionPost,CreateDiscussionPostReply, CreateNewList
+from .models import Course, Module, ToDoList, Discussion, DiscussionReply
+from .forms import  CreateCourse, CreateDiscussionPost,CreateDiscussionPostReply, CreateModule, CreateNewList
 from django.utils import timezone
 
 # Create your views here.
@@ -116,5 +116,19 @@ def discussPost(response, id):
     return render(response, "main/discuss_post.html", {"discussion_post": discussion_post, "discussion_post_reply": discussion_post_reply})
 
 def modules(response):
-    return render(response, "main/modules.html", {})
+    if response.method == "POST":
+        form = CreateModule(response.POST)
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            courseId = form.cleaned_data["course"]
+            course = Course(id=courseId)
+
+            m = Module(title=title, course=course)
+            m.save()
+            response.user.teachersmodule.add(m)
+
+    else:
+        form = CreateModule()
+
+    return render(response, "main/modules.html", {"teacherscourse": response.user.teacherscourse, "teachersmodule": response.user.teachersmodule})
 

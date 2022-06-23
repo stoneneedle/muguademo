@@ -10,6 +10,10 @@ class CreateDiscussionPost(forms.Form):
 class CreateDiscussionPostReply(forms.Form):
     message = forms.CharField(widget=forms.Textarea)
 
+class CreateModule(forms.Form):
+    title = forms.CharField(label="Title", max_length=120)
+    course = forms.CharField(label="Course", max_length=120)
+
 class CreateNewList(forms.Form):
     name = forms.CharField(label="Name", max_length=200)
     check = forms.BooleanField(required=False)

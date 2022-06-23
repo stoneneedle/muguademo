@@ -1,6 +1,45 @@
 {% extends "main/base.html" %}
-{% block title %}MODULES{% endblock %}
+{% block title %}Mugua - Modules{% endblock %}
 
 {% block content %}
-<h1>MODULES</h1>
+<h1>Modules</h1>
+
+<p>No modules. PLACEHOLDER</p>
+
+{% if not teachersmodule.all %}
+<p>No courses yet.</p>
+{% else %}
+    {% for module in teachersmodule.all %}
+{{module.title}}<br />
+    {% endfor %}
+{% endif %}
+
+<hr />
+
+<form method="post" action="#">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row mb-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Module Title</div>
+                </div>
+                <input type="text" name="title" class="form-control" id="inlineFormInputGroupUsername" placeholder="The Northern Renaissance" required>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Associated Course</div>
+                </div>
+                <select class="custom-select" name="course" multiple>
+                    {% for course in teacherscourse.all %}
+                    <option value="{{course.id}}">{{course.title}}</option>
+                    {% endfor %}
+                </select>
+        </div>
+        <div class="row mb-1">
+            <button type="submit" name="addModule" value="addModule" class="btn btn-success">Add</button>
+        </div>
+    </div>
+</form>
+
 {% endblock %}
