@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import ToDoList, Discussion, DiscussionReply
-from .forms import CreateDiscussionPostReply, CreateNewList, CreateDiscussionPost
+from .models import Course, ToDoList, Discussion, DiscussionReply
+from .forms import  CreateCourse, CreateDiscussionPost,CreateDiscussionPostReply, CreateNewList
 from django.utils import timezone
 
 # Create your views here.
@@ -38,7 +38,20 @@ def home(response):
     return render(response, "main/home.html", {})
 
 def courses(response):
-    return render(response, "main/courses.html", {})
+    if response.method == "POST":
+        form = CreateCourse(response.POST)
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+
+            c = Course(title=title)
+            c.save()
+            response.user.teacherscourse.add(c)
+
+            return HttpResponseRedirect("/courses")
+    else:
+        form = CreateCourse()
+
+    return render(response, "main/courses.html", {"teacherscourse": response.user.teacherscourse})
 
 def create(response):
     if response.method == "POST":

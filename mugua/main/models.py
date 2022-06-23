@@ -6,8 +6,6 @@ from django.db import models
 # LMS Models
 class Course(models.Model):
     title = models.CharField(max_length=200, null=True)
-    start_date = models.DateField(null=True)
-    end_date = models.DateField(null=True)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name="teacherscourse", null=True)
 
     def __str__(self):
