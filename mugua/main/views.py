@@ -9,7 +9,7 @@ from django.utils import timezone
 def assignments(response):
     return render(response, "main/assignments.html", {})
 
-def index(response, id):
+def list(response, id):
     ls = ToDoList.objects.get(id=id)
 
     if ls in response.user.todolist.all():
@@ -32,7 +32,7 @@ def index(response, id):
                 else:
                     print("invalid")
         return render(response, "main/list.html", {"ls": ls})
-    return render(response, "main/view.html", {"ls": ls})
+    return render(response, "main/tdl.html", {"ls": ls})
 
 def home(response):
     return render(response, "main/home.html", {})
