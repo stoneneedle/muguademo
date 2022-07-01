@@ -7,9 +7,13 @@
 {% if not teacherscourse.all %}
 <p>No courses yet.</p>
 {% else %}
-    {% for course in teacherscourse.all %}
-        <form method="POST" action="#">{% csrf_token %}<button type="submit" name="changeCurrentCourse" value="{{course.title}}">{{course.title}}</button></form><br />
-    {% endfor %}
+    <form method="POST" action="#">
+        {% csrf_token %}
+        <button type="submit" name="changeCurrentCourse" value="None">None</button><br /><br />
+        {% for course in teacherscourse.all %}
+            <button type="submit" name="changeCurrentCourse" value="{{course.title}}">{{course.title}}</button><br /><br />
+        {% endfor %}
+    </form>
 {% endif %}
 
 <hr />

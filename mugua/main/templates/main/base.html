@@ -17,13 +17,17 @@
         <div class="p-1">
             <a href="/">Home</a>
             <a href="/courses">Courses</a>
-            <a href="/modules">Modules</a>
-            <a href="/assignments">Assignments</a>
-            <a href="/discuss">Discussion</a>
+            {% if request.session.current_course != 'None' %}
+                <a href="/modules">Modules</a>
+                <a href="/assignments">Assignments</a>
+                <a href="/discuss">Discussion</a>
+            {% endif %}
             <a href="/tdl">To-Do Lists</a>
+
         </div>
         {% if user.is_authenticated %}
         <div class="mt-auto p-1 userinfo">
+            <p>{{request.session.current_course}}</p>
             <p>Hello {{user.get_username}}.</p>
         </div>
         {% endif %}
