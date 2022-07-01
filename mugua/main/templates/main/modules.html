@@ -5,10 +5,12 @@
 <h1>Modules</h1>
 
 {% if not teachersmodule.all %}
-<p>No courses yet.</p>
+    <p>No modules yet.</p>
 {% else %}
     {% for module in teachersmodule.all %}
-{{module.title}}<br />
+        {% if module.course.id|add:"0" == request.session.current_course_id|add:"0" %}
+            {{module.title}}<br />
+        {% endif %}
     {% endfor %}
 {% endif %}
 
@@ -24,7 +26,8 @@
                 </div>
                 <input type="text" name="title" class="form-control" id="inlineFormInputGroupUsername" placeholder="The Northern Renaissance" required>
             </div>
-            <div class="input-group">
+
+            {% comment %} <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text">Associated Course</div>
                 </div>
@@ -33,9 +36,10 @@
                     <option value="{{course.id}}">{{course.title}}</option>
                     {% endfor %}
                 </select>
+            </div> {% endcomment %}
         </div>
         <div class="row mb-1">
-            <button type="submit" name="addModule" value="addModule" class="btn btn-success">Add</button>
+            <button type="submit" name="addModule" value="{{request.session.current_course}}" class="btn btn-success">Add</button>
         </div>
     </div>
 </form>

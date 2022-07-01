@@ -9,9 +9,15 @@
 {% else %}
     <form method="POST" action="#">
         {% csrf_token %}
+        <input type="hidden" name="courseId" value="0">
         <button type="submit" name="changeCurrentCourse" value="None">None</button><br /><br />
+    </form>
         {% for course in teacherscourse.all %}
-            <button type="submit" name="changeCurrentCourse" value="{{course.title}}">{{course.title}}</button><br /><br />
+            <form method="POST" action="#">
+                {% csrf_token %}
+                <input type="hidden" name="courseId" value="{{course.id}}">
+                <button type="submit" name="changeCurrentCourse" value="{{course.title}}">{{course.title}}</button><br /><br />
+            </form>
         {% endfor %}
     </form>
 {% endif %}
@@ -19,8 +25,8 @@
 <hr />
 
 CURRENT COURSE:
-{{ request.session.current_course }}
-
+{{ request.session.current_course }}<br />
+Course ID: {{ request.session.current_course_id}}
 <hr />
 
 <form method="post" action="#">

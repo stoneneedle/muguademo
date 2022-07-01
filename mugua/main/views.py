@@ -51,13 +51,20 @@ def courses(response):
                 return HttpResponseRedirect("/courses")
         elif 'changeCurrentCourse' in response.POST:
             response.session['current_course'] = response.POST['changeCurrentCourse']
+            response.session['current_course_id'] = response.POST['courseId']
+            print(response.POST)
 
     current_course = response.session.get('current_course')
+    current_course_id = response.session.get('current_course_id')
     
     if current_course is None:
         current_course = 'None'
+ 
+    if current_course_id is None:
+        current_course_id = 0
 
     response.session['current_course'] = current_course
+    response.session['current_course_id'] = current_course_id
 
     return render(response, "main/courses.html", {"teacherscourse": response.user.teacherscourse})
 
@@ -109,8 +116,8 @@ def modules(response):
         form = CreateModule(response.POST)
         if form.is_valid():
             title = form.cleaned_data["title"]
-            courseId = form.cleaned_data["course"]
-            course = Course(id=courseId)
+            #courseId = form.cleaned_data["course"]
+            course = Course(id=response.session['current_course_id'])
 
             m = Module(title=title, course=course)
             m.save()
