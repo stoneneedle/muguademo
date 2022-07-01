@@ -39,38 +39,27 @@ def home(response):
 
 def courses(response):
     if response.method == "POST":
-        form = CreateCourse(response.POST)
-        if form.is_valid():
-            title = form.cleaned_data["title"]
+        if 'addCourse' in response.POST:
+            form = CreateCourse(response.POST)
+            if form.is_valid():
+                title = form.cleaned_data["title"]
 
-            c = Course(title=title)
-            c.save()
-            response.user.teacherscourse.add(c)
+                c = Course(title=title)
+                c.save()
+                response.user.teacherscourse.add(c)
 
-            return HttpResponseRedirect("/courses")
-    else:
-        form = CreateCourse()
+                return HttpResponseRedirect("/courses")
+        elif 'changeCurrentCourse' in response.POST:
+            response.session['current_course'] = response.POST['changeCurrentCourse']
+
+    current_course = response.session.get('current_course')
+    
+    if current_course is None:
+        current_course = 'None'
+
+    response.session['current_course'] = current_course
 
     return render(response, "main/courses.html", {"teacherscourse": response.user.teacherscourse})
-
-def create(response):
-    if response.method == "POST":
-        form = CreateNewList(response.POST)
-
-        if form.is_valid():
-            n = form.cleaned_data["name"]
-            t = ToDoList(name=n)
-            t.save()
-            response.user.todolist.add(t)
-
-        return HttpResponseRedirect("/%i" %t.id)
-    else:
-        form = CreateNewList()
-
-    return render(response, "main/create.html", {"form": form})
-
-def view(response):
-    return render(response, "main/view.html", {})
 
 def discuss(response):
     if response.method == "POST":
@@ -132,3 +121,18 @@ def modules(response):
 
     return render(response, "main/modules.html", {"teacherscourse": response.user.teacherscourse, "teachersmodule": response.user.teachersmodule})
 
+def tdl(response):
+    if response.method == "POST":
+        form = CreateNewList(response.POST)
+
+        if form.is_valid():
+            n = form.cleaned_data["name"]
+            t = ToDoList(name=n)
+            t.save()
+            response.user.todolist.add(t)
+
+        return HttpResponseRedirect("/%i" %t.id)
+    else:
+        form = CreateNewList()
+
+    return render(response, "main/tdl.html", {"form": form})
