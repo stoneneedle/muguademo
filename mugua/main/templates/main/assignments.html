@@ -2,5 +2,77 @@
 {% block title %}ASSIGNMENTS{% endblock %}
 
 {% block content %}
-<h1>ASSIGNMENTS</h1>
+    <h1>ASSIGNMENTS</h1>
+
+    <hr />
+    <p>No Assignments. PLACEHOLDER</p>
+
+    <hr />
+    <h2>Add Assignment</h2>
+
+    <hr />
+    MODULE TEST
+    {% for module in teachersmodule.all %}
+        {{module.title}}
+    {% endfor %}
+
+
+    <hr />
+
+    <form method="post" action="#">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row mb-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Module Title</div>
+                    </div>
+                    <input type="text" name="title" class="form-control" id="inlineFormInputGroupUsername" placeholder="Shakespearean English" required>
+                </div>
+            </div>
+    
+            {% comment %} <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Module</div>
+                </div>
+                <select class="custom-select" name="module">
+                    {% for module in teachersmodule.all %}
+                    <option value="{{module.id}}">{{module.title}}</option>
+                    {% endfor %}
+                </select>
+            </div> {% endcomment %}
+
+            <div class="row mb-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Maximum Points</div>
+                    </div>
+                    <input type="number" name="maxgradepts" class="form-control" id="inlineFormInputGroupUsername" placeholder="100.0" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Description</div>
+                    </div>
+                    <input type="number" name="maxgradepts" class="form-control" id="inlineFormInputGroupUsername" placeholder="100.0" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Description</div>
+                    </div>
+                    <textarea class="form-control" name="asmtdescription" id="validationTextarea" placeholder="You will be required to..." required></textarea>
+                </div>
+            </div>
+
+            
+            <div class="row mb-1">
+                <button type="submit" name="addModule" value="{{request.session.current_course}}" class="btn btn-success">Add</button>
+            </div>
+        </div>
+    </form>
 {% endblock %}

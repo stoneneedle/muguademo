@@ -37,10 +37,16 @@
                 <input type="text" name="title" class="form-control" id="inlineFormInputGroupUsername" placeholder="Today's Lesson" required>
             </div>
         </div>
+
         <div class="row mb-3">
-            <label for="validationTextarea">Message</label>
-            <textarea class="form-control" name="message" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Message</div>
+                </div>
+                <textarea class="form-control" name="message" id="validationTextarea" placeholder="I think that..." required></textarea>
+            </div>
         </div>
+
         <div class="row mb-1">
             <button type="submit" name="postDiscussion" value="postDiscussion" class="btn btn-success">Post</button>
         </div>
