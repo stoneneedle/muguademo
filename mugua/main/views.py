@@ -28,7 +28,7 @@ def assignments(response):
     course_has_asmts = False
 
     for assignment in assignments:
-        if assignment.course.id == current_course:
+        if int(assignment.course.id) == int(current_course):
             course_asmt_count += 1
 
     if course_asmt_count != 0:
