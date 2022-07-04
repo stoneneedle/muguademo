@@ -1,5 +1,10 @@
 from django import forms
 
+class CreateAssignment(forms.Form):
+    title = forms.CharField(label="Title", max_length=120)
+    max_grade_pts = forms.IntegerField()
+    description = forms.CharField(widget=forms.Textarea)
+
 class CreateCourse(forms.Form):
     title = forms.CharField(label="Title", max_length=120)
 

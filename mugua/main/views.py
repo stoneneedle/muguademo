@@ -1,13 +1,40 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Course, Module, ToDoList, Discussion, DiscussionReply
-from .forms import  CreateCourse, CreateDiscussionPost,CreateDiscussionPostReply, CreateModule, CreateNewList
+from .models import Assignment, Course, Module, ToDoList, Discussion, DiscussionReply
+from .forms import  CreateAssignment, CreateCourse, CreateDiscussionPost,CreateDiscussionPostReply, CreateModule, CreateNewList
 from django.utils import timezone
 
 # Create your views here.
 
 def assignments(response):
-    return render(response, "main/assignments.html", {})
+    if response.method == "POST":
+        print(response.POST)
+        form = CreateAssignment(response.POST)
+        if form.is_valid():
+            
+            title = form.cleaned_data["title"]
+            max_grade_pts = form.cleaned_data["max_grade_pts"]
+            description = form.cleaned_data["description"]
+            course = Course(id=response.session['current_course_id'])
+
+            a = Assignment(title=title, max_grade_pts=max_grade_pts, description=description, course=course)
+            a.save()
+    else:
+        form = CreateAssignment()
+
+    assignments = Assignment.objects.all()
+    current_course = response.session['current_course_id']
+    course_asmt_count = 0
+    course_has_asmts = False
+
+    for assignment in assignments:
+        if assignment.course.id == current_course:
+            course_asmt_count += 1
+
+    if course_asmt_count != 0:
+        course_has_asmts = True
+
+    return render(response, "main/assignments.html", {"assignments": assignments, "course_has_asmts": course_has_asmts})
 
 def list(response, id):
     ls = ToDoList.objects.get(id=id)
