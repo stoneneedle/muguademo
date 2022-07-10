@@ -1,6 +1,7 @@
 {% extends "main/base.html" %}
-{% block title %}Mugua - Modules{% endblock %}
+{% block title %}{{module.title}}{% endblock %}
 
 {% block content %}
-    <h1>MODULE TITLE</h1>
+    <h1>{{module.title}}</h1>
+    <p><a href="/modules/">Return to modules.</a></p>
 {% endblock %}

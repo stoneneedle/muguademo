@@ -10,6 +10,6 @@ urlpatterns = [
     path("tdl/", views.tdl, name="tdl"),
     path("discuss/", views.discuss, name="discuss"),
     path("discuss/<int:id>", views.discussPost, name="discussPost"),
-    path("modules", views.modules, name="modules"),
+    path("modules/", views.modules, name="modules"),
     path("modules/<int:id>", views.module, name="module"),
 ] 
