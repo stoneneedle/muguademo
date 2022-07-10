@@ -6,6 +6,9 @@ from django.utils import timezone
 
 # Create your views here.
 
+def assignment(response):
+    return render(response, "main/assignment.html", {})
+
 def assignments(response):
     if response.method == "POST":
         print(response.POST)
