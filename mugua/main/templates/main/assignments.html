@@ -9,9 +9,7 @@
     {% if course_has_asmts %}
         {% for assignment in assignments %}
             {% if assignment.course.id|add:"0" == request.session.current_course_id|add:"0" %}
-                <p>Assignment Title: {{assignment.title}}</p>
-                <p>Assignment ID: {{assignment.id}}</p>
-                <p>Assignment Course ID: {{assignment.course.id}}</p>
+                <p><a href="/assignments/{{assignment.id}}">{{assignment.title}}</a></p>
             {% endif %}
         {% endfor %}
     {% else %}

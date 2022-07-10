@@ -2,5 +2,7 @@
 {% block title %}Assignments{% endblock %}
 
 {% block content %}
-    <h1>ASSIGNMENT TITLE</h1>
+    <h1>{{asmt.title}}</h1>
+    <p><strong>Maximum Score:</strong> {{asmt.max_grade_pts}}</p>
+    <p><strong>Description:</strong> {{asmt.description}}</p>
 {% endblock %}
