@@ -1,8 +1,10 @@
 {% extends "main/base.html" %}
-{% block title %}Assignments{% endblock %}
+{% block title %}{{asmt.title}}{% endblock %}
 
 {% block content %}
     <h1>{{asmt.title}}</h1>
     <p><strong>Maximum Score:</strong> {{asmt.max_grade_pts}}</p>
     <p><strong>Description:</strong> {{asmt.description}}</p>
+
+    <p><a href="/assignments/">Return to assignments.</a></p>
 {% endblock %}

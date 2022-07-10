@@ -9,7 +9,7 @@
 {% else %}
     {% for module in teachersmodule.all %}
         {% if module.course.id|add:"0" == request.session.current_course_id|add:"0" %}
-            {{module.title}}<br />
+            <p><a href="/modules/{{module.id}}">{{module.title}}</a></p>
         {% endif %}
     {% endfor %}
 {% endif %}

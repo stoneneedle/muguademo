@@ -142,6 +142,10 @@ def discussPost(response, id):
     discussion_post_reply = DiscussionReply.objects.all() # get(discussion=id)
     return render(response, "main/discuss_post.html", {"discussion_post": discussion_post, "discussion_post_reply": discussion_post_reply})
 
+def module(response, id):
+    module = Module.objects.get(id=id)
+    return render(response, "main/module.html", {"module": module})
+
 def modules(response):
     if response.method == "POST":
         form = CreateModule(response.POST)
